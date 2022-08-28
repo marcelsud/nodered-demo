@@ -1,0 +1,4 @@
+data/*
+
+# exceto os arquivos de flow
+!/data/flows.json

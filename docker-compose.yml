@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  nodered-dev:
+    ports:
+      - "1880:1880"
+    environment:
+      - TEST=abc
+    build:
+      context: .
+      target: dev
+    volumes:
+      - ${PWD}/data:/data

@@ -1,0 +1,65 @@
+[
+    {
+        "id": "ea04517c897a4988",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "28ce32390d12cded",
+        "type": "inject",
+        "z": "ea04517c897a4988",
+        "name": "start",
+        "props": [],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "432460bf3d4a904f"
+            ]
+        ]
+    },
+    {
+        "id": "432460bf3d4a904f",
+        "type": "function",
+        "z": "ea04517c897a4988",
+        "name": "function 1",
+        "func": "console.log(env.get('TEST'));\n\nreturn {\n    payload: env.get('TEST')\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 280,
+        "wires": [
+            [
+                "d936d50397c86dcb"
+            ]
+        ]
+    },
+    {
+        "id": "d936d50397c86dcb",
+        "type": "debug",
+        "z": "ea04517c897a4988",
+        "name": "testa",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 280,
+        "wires": []
+    }
+]
