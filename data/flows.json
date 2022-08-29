@@ -61,5 +61,51 @@
         "x": 680,
         "y": 280,
         "wires": []
+    },
+    {
+        "id": "3aa73654be9c35b0",
+        "type": "http in",
+        "z": "ea04517c897a4988",
+        "name": "",
+        "url": "/commits",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "0309239d3cb44dd8",
+                "939387dda7d8626f"
+            ]
+        ]
+    },
+    {
+        "id": "0309239d3cb44dd8",
+        "type": "http response",
+        "z": "ea04517c897a4988",
+        "name": "",
+        "statusCode": "201",
+        "headers": {},
+        "x": 480,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "939387dda7d8626f",
+        "type": "debug",
+        "z": "ea04517c897a4988",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "counter",
+        "x": 490,
+        "y": 500,
+        "wires": []
     }
 ]
