@@ -7,6 +7,8 @@ services:
       - TEST=abc
     build:
       context: .
-      target: dev
-    volumes:
-      - ${PWD}/data:/data
+    entrypoint: >
+      sh -c "
+      npm install --prefix /data --unsafe-perm --no-update-notifier --no-fund --only=production
+      && npm --no-update-notifier --no-fund start --cache /data/.npm -- --userDir /data"
+    restart: unless-stopped

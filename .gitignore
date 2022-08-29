@@ -1,4 +1,7 @@
+node_modules/
 data/*
 
 # exceto os arquivos de flow
 !/data/flows.json
+!/data/nodes
+!/data/package.json
