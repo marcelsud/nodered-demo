@@ -53,11 +53,11 @@
         "active": true,
         "tosidebar": true,
         "console": true,
-        "tostatus": false,
+        "tostatus": true,
         "complete": "payload",
         "targetType": "msg",
         "statusVal": "",
-        "statusType": "auto",
+        "statusType": "counter",
         "x": 680,
         "y": 280,
         "wires": []
