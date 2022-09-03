@@ -1,7 +1,9 @@
 {
-  "dependencies": {
-    "@alpine-code/node-red-contrib-camunda": "^2.2.10",
-    "@node-red-contrib-themes/theme-collection": "^3.0.3",
-    "node-red": "^3.0.2"
-  }
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "cryptr": "^6.0.3"
+    }
 }

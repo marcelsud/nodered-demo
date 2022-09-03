@@ -1,7 +1,7 @@
 node_modules/
 data/*
+*.env
 
 # exceto os arquivos de flow
-!/data/flows.json
-!/data/nodes
+!/data/flows_encrypted.json
 !/data/package.json

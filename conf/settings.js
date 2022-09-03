@@ -20,6 +20,22 @@
  *
  **/
 
+if (process.env.FLOWS_FILE_ENCRYPTION_KEY) {
+  const fs = require("fs");
+
+  const decrypt = (text) => {
+    const Cryptr = require("cryptr");
+    const cryptr = new Cryptr(process.env.FLOWS_FILE_ENCRYPTION_KEY);
+
+    return cryptr.decrypt(text);
+  };
+
+  const encrypted = fs.readFileSync(process.env.FLOWS_ENCRYPTED_FILE_PATH);
+  const decrypted = decrypt(encrypted);
+
+  fs.writeFileSync(process.env.FLOWS_FILE_PATH, decrypted);
+}
+
 module.exports = {
   /*******************************************************************************
    * Flow File and User Directory Settings
@@ -72,14 +88,16 @@ module.exports = {
   /** To password protect the Node-RED editor and admin API, the following
    * property can be used. See http://nodered.org/docs/security.html for details.
    */
-  //adminAuth: {
-  //    type: "credentials",
-  //    users: [{
-  //        username: "admin",
-  //        password: "$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN.",
-  //        permissions: "*"
-  //    }]
-  //},
+  adminAuth: {
+    type: "credentials",
+    users: [
+      {
+        username: process.env.ADMIN_USERNAME,
+        password: process.env.ADMIN_PASSWORD,
+        permissions: "*",
+      },
+    ],
+  },
 
   /** The following property can be used to enable HTTPS
    * This property can be either an object, containing both a (private) key
@@ -183,7 +201,6 @@ module.exports = {
    * disabled.
    */
   //httpNodeRoot: '/red-nodes',
-  httpNodeRoot: false,
 
   /** The following property can be used to configure cross-origin resource sharing
    * in the HTTP nodes.
@@ -330,7 +347,6 @@ module.exports = {
    * API, use either the httpRoot or httpAdminRoot properties
    */
   //disableEditor: false,
-  disableEditor: true,
 
   /** Customising the editor
    * See https://nodered.org/docs/user-guide/runtime/configuration#editor-themes

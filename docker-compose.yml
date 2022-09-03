@@ -3,8 +3,8 @@ services:
   nodered-dev:
     ports:
       - "1880:1880"
-    environment:
-      - TEST=abc
+    env_file:
+      - dev.env
     build:
       context: .
     entrypoint: >
