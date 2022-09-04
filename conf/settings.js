@@ -34,6 +34,10 @@ if (process.env.FLOWS_FILE_ENCRYPTION_KEY) {
   const decrypted = decrypt(encrypted);
 
   fs.writeFileSync(process.env.FLOWS_FILE_PATH, decrypted);
+  console.log(
+    process.env.FLOWS_FILE_PATH,
+    fs.existsSync(process.env.FLOWS_FILE_PATH)
+  );
 }
 
 module.exports = {
@@ -88,16 +92,19 @@ module.exports = {
   /** To password protect the Node-RED editor and admin API, the following
    * property can be used. See http://nodered.org/docs/security.html for details.
    */
-  adminAuth: {
-    type: "credentials",
-    users: [
-      {
-        username: process.env.ADMIN_USERNAME,
-        password: process.env.ADMIN_PASSWORD,
-        permissions: "*",
-      },
-    ],
-  },
+  // adminAuth:
+  //   process.env.NODE_ENV === "production"
+  //     ? {
+  //         type: "credentials",
+  //         users: [
+  //           {
+  //             username: process.env.ADMIN_USERNAME,
+  //             password: process.env.ADMIN_PASSWORD,
+  //             permissions: "*",
+  //           },
+  //         ],
+  //       }
+  //     : undefined,
 
   /** The following property can be used to enable HTTPS
    * This property can be either an object, containing both a (private) key
@@ -346,7 +353,7 @@ module.exports = {
    * is not affected by this option. To disable both the editor and the admin
    * API, use either the httpRoot or httpAdminRoot properties
    */
-  //disableEditor: false,
+  disableEditor: process.env.NODE_ENV === "production" ? true : false,
 
   /** Customising the editor
    * See https://nodered.org/docs/user-guide/runtime/configuration#editor-themes
